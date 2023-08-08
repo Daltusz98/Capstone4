@@ -1,12 +1,13 @@
+#%%
 import json
 import os
 # 3rd parties
 import streamlit as st
 import openai
 from IPython.display import Markdown, display, Image
-openai.api_key = "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"
+openai.api_key = os.getenv('OPENAI_API_KEY')
 story = ""
-
+#%%
 def action_sequence(side1,side2,place,result):
     global story
     system = "You are an action scene director that describe a fight scene step by step for a story or movie "
@@ -64,4 +65,5 @@ if st.button('Generate'):
             size="256x256"  
         )
         image_url = response['data'][0]['url']
-        st.image(image_url, caption=ii, use_column_width=True)
+        st.image(image_url, caption=ii)
+# %%
